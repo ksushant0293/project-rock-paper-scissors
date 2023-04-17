@@ -1,7 +1,6 @@
 function getComputerChoice() {
     let arr = ["rock", "paper", "scissors"];
     let idx = Math.floor(Math.random() * 3);
-    console.log(idx, arr[idx]);
     return arr[idx];
 }
 
@@ -13,64 +12,111 @@ function singleRound(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == "rock") {
         if (computerSelection == "scissors") {
-            console.log(1);
-            return winMessage;
+            return {
+                message: winMessage,
+                winner: 1
+            };
         } else if (computerSelection == "paper") {
-            console.log(2);
-
-            return loseMessage
+            return {
+                message: loseMessage,
+                winner: 0
+            }
         }
     } else if (playerSelection == "scissors") {
         if (computerSelection == "paper") {
-            return winMessage;
+            return {
+                message: winMessage,
+                winner: 1
+            };
         } else if (computerSelection == "rock") {
-            return loseMessage
+            return {
+                message: loseMessage,
+                winner: 0
+            }
         }
     } else if (playerSelection == "paper") {
         if (computerSelection == "scissors") {
-            return loseMessage;
+            return {
+                message: loseMessage,
+                winner: 0
+            };
         } else if (computerSelection == "rock") {
-            return winMessage
+            return {
+                message: winMessage,
+                winner: 1
+            };
         }
     }
 
-    return "draw"
+    return {
+        message: "draw",
+        winner: -1
+    }
 
 }
-
 
 function game() {
     let playerSelection = prompt("input from user");
     let computerSelection = getComputerChoice();
     let result = singleRound(playerSelection, computerSelection);
-    console.log(result);
-    console.log(computerSelection, "meow");
-
-     playerSelection = prompt("input from user");
-     computerSelection = getComputerChoice();
-     result = singleRound(playerSelection, computerSelection);
-    console.log(result);
-    console.log(computerSelection, "meow");
+    let playerScore = 0;
+    let computerScore = 0;
+    if(result.winner == 1){
+        playerScore += 1
+    } else if(result.winner == 0){
+        computerScore += 1;
+    }
+    console.log(result, "sushant");
+    console.log(computerSelection);
 
     playerSelection = prompt("input from user");
     computerSelection = getComputerChoice();
     result = singleRound(playerSelection, computerSelection);
     console.log(result);
-    console.log(computerSelection, "meow");
+    console.log(computerSelection);
+    if(result.winner == 1){
+        playerScore += 1
+    } else if(result.winner == 0){
+        computerScore += 1;
+    }
 
-     playerSelection = prompt("input from user");
-     computerSelection = getComputerChoice();
-     result = singleRound(playerSelection, computerSelection);
-    console.log(result);
-    console.log(computerSelection, "meow");
-
-     playerSelection = prompt("input from user");
-     computerSelection = getComputerChoice();
+    playerSelection = prompt("input from user");
+    computerSelection = getComputerChoice();
     result = singleRound(playerSelection, computerSelection);
     console.log(result);
-    console.log(computerSelection, "meow");
-
-    return result
+    console.log(computerSelection);
+    if(result.winner == 1){
+        playerScore += 1
+    } else if(result.winner == 0){
+        computerScore += 1;
+    }
+    playerSelection = prompt("input from user");
+    computerSelection = getComputerChoice();
+    result = singleRound(playerSelection, computerSelection);
+    console.log(result);
+    console.log(computerSelection);
+    if(result.winner == 1){
+        playerScore += 1
+    } else if(result.winner == 0){
+        computerScore += 1;
+    }
+    playerSelection = prompt("input from user");
+    computerSelection = getComputerChoice();
+    result = singleRound(playerSelection, computerSelection);
+    console.log(result, "sushant");
+    console.log(computerSelection);
+    if(result.winner == 1){
+        playerScore += 1
+    } else if(result.winner == 0){
+        computerScore += 1;
+    }
+    if(computerScore > playerScore){
+        return "You win";
+    } else if(playerScore > computerScore){
+        return "You lose";
+    } else {
+        return "draw";
+    }
+   
 }
-
 console.log(game());
